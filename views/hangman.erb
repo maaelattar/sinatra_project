@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <title>Hangman Game</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-size: 100%;
+        font-family: arial, sans-serif;
+        background: radial-gradient(#00796B, #004D40);
+        color: white;
+      }
+      h1 {
+        color: #FFF59D;
+        text-shadow: 2px 2px 2px #FBC02D;
+        height: 60px;
+        line-height: 60px;
+        padding: 4px;
+        text-align: center;
+      }
+      div#container {
+        font-size: 30px;
+        width: 600px;
+        margin: 0 auto;
+      }
+      input[type="text"] {
+        margin: 30px 30px 0 0;
+        height: 200px;
+        font-size: 24px;
+        color: #616161;
+        width: 400px;
+        padding: 20px;
+      }
+      input[type='submit'] {
+        height: 40px;
+        width: 150px;
+        margin-top: 20px;
+        color: #FFEB3B;
+        box-shadow: 0 0 50px #FBC02D;
+        border: none;
+        outline: none;
+        background: transparent;
+      }
+      p.chances {
+        text-align: center;
+        margin-top: 30px;
+      }
+      p.message {
+        color: #C5E1A5;
+        text-shadow: 2px 2px 2px #388E3C;
+        margin-top: 20px;
+      }
+      a {
+        text-decoration: none;
+
+      }
+      a.new {
+        display: block;
+        text-align: center;
+        margin-top: 40px;
+        color: #BF360C;
+        box-shadow: 0 0 20px #BF360C;
+      }
+      a.home {
+        color: white;
+        position: absolute;
+        left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hangman<a href="/" class="home">Home</a>
+    </h1>
+    <div id="container">
+      <p>Word:
+        <%= guessed_word %></p>
+      <p>Misses:
+        <%= misses.join(', ') %></p>
+      <form>
+        <% unless game.game_end? %>
+          <input type="text" name="letter" placeholder="Guess a letter" pattern="[A-za-z]{1}" autofocus="autofocus" autocomplete="off" required="required"/>
+          <input type="submit"/>
+          <p class="chances">Available Chances:
+            <%= available_chances %></p>
+        <% end %>
+      </form>
+      <% if game.game_end? %>
+        <p class="message"><%= game.message %>
+        </p>
+        <% session.clear %><% end %>
+        <a href="/new_hangman" class="new">New Game</a>
+      </div>
+    </body>
+  </html>

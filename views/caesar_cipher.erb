@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <title>Caesar Cipher</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-size: 100%;
+        font-family: arial, sans-serif;
+        background: #eeeeee;
+      }
+      h1 {
+        background-color: white;
+        height: 60px;
+        line-height: 60px;
+        padding: 4px;
+        text-align: center;
+      }
+      div#container {
+        font-size: 30px;
+        margin: 24px;
+      }
+      input[type="number"],
+      textarea {
+        float: left;
+        margin-right: 30px;
+        height: 200px;
+        font-size: 24px;
+        color: #616161;
+        width: 400px;
+        padding: 20px;
+        resize: none;
+      }
+      input[type='submit'] {
+        height: 60px;
+        width: 200px;
+        margin-top: 60px;
+      }
+      div#form {
+        height: 100%;
+        display: table-cell;
+        vertical-align: middle;
+      }
+      div#form::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+      div#enc_msg {
+        width: 1000px;
+        height: 200px;
+        margin-top: 60px;
+        background-color: white;
+        word-wrap: break-word;
+        overflow: auto;
+        border: solid 3px white;
+        padding: 20px;
+      }
+      a{
+        text-decoration: none;
+        color: #BF360C;
+      }
+      a.home{
+        position: absolute;
+        left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Caesar Cipher <a href="/" class="home">Home</a></h1>
+    <div id="container">
+      <div id="form">
+        <form action="/caesar_cipher" method="POST">
+          <textarea name="message" placeholder="Message" autofocus="autofocus" required="required"></textarea>
+          <input type="number" name="number" min="0" max="25" step="1" value="1" id="number"/>
+          <input type="submit"/>
+        </form>
+      </div>
+      <div id="enc_msg">
+        <% if encrypted_message %>
+        <p><%= encrypted_message %></p>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
